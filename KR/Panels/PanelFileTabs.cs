@@ -26,7 +26,8 @@ namespace KR.Panels
             {
                 RichTextBox rtb = new RichTextBox()
                 {
-                    Dock = DockStyle.Fill
+                    Dock = DockStyle.Fill,
+                    Font = new Font("Times New Roman", 14, FontStyle.Regular)
                 };
                 rtb.Text = File.ReadAllText(file);
                 tabFiles.TabPages.Add(file.Substring(file.LastIndexOf('\\')+1));

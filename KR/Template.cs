@@ -48,6 +48,10 @@ namespace KR
         private void Template_DragDrop(object sender, DragEventArgs e)
         {
             String rootDir = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+            if (panelDirectory == null)
+            {
+                panelDirectory = new PanelDirectory();
+            }
             panelDirectory.initTree(rootDir);
         }
 
@@ -93,6 +97,17 @@ namespace KR
                 formInsertMatkul = new AddMatkul();
             }
             formInsertMatkul.Show();
+        }
+
+        private void Template_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Alt && e.KeyCode == Keys.Left)
+            {
+                panelDirectory.switchProject(false);
+            } else if (e.Alt && e.KeyCode == Keys.Right)
+            {
+                panelDirectory.switchProject(true);
+            }
         }
     }
 }

@@ -15,6 +15,8 @@ namespace KR
     public partial class PanelDirectory : UserControl
     {
         public static String rootDirectory="";
+        public static TreeNode selectedNode;
+
         public PanelDirectory()
         {
             InitializeComponent();
@@ -54,7 +56,33 @@ namespace KR
 
         private void tree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            String selectedProject = rootDirectory + @"\" + e.Node.Text;
+            switchProject(e.Node);
+        }
+
+        public void switchProject(bool isNext)
+        {
+            int currentIndex = tree.Nodes.IndexOf(selectedNode);
+            int targetedIndex = currentIndex;
+
+            if (isNext && currentIndex < tree.Nodes.Count - 1)
+            {
+                targetedIndex += 1;
+            } else if (!isNext && currentIndex > 0)
+            {
+                targetedIndex -= 1;
+            }
+
+            TreeNode targetedNode = tree.Nodes[targetedIndex];
+
+            switchProject(targetedNode);
+        }
+
+        public void switchProject(TreeNode target)
+        {
+            if (selectedNode == target)
+                return;
+            selectedNode = target;
+            String selectedProject = rootDirectory + @"\" + target.Text;
             List<String> files = Directory
                 .GetFiles(selectedProject, "*.java", SearchOption.AllDirectories)
                 .Where(c => Matkul.getSelectedMatkul().getCheckedDirectories().FirstOrDefault(a => c.Contains(a)) != null)
