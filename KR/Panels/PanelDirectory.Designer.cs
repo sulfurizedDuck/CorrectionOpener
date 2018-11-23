@@ -35,18 +35,20 @@
             // 
             this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tree.Location = new System.Drawing.Point(0, 0);
+            this.tree.Margin = new System.Windows.Forms.Padding(4);
             this.tree.Name = "tree";
-            this.tree.Size = new System.Drawing.Size(367, 279);
+            this.tree.Size = new System.Drawing.Size(489, 343);
             this.tree.TabIndex = 0;
-            this.tree.DoubleClick += new System.EventHandler(this.tree_DoubleClick);
+            this.tree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseDoubleClick);
             // 
             // PanelDirectory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tree);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PanelDirectory";
-            this.Size = new System.Drawing.Size(367, 279);
+            this.Size = new System.Drawing.Size(489, 343);
             this.Load += new System.EventHandler(this.PanelDirectory_Load);
             this.ResumeLayout(false);
 

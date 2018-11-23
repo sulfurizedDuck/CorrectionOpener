@@ -1,4 +1,5 @@
 ﻿using KR.Panels;
+using KR.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,10 @@ namespace KR
 {
     public partial class Template : Form
     {
-        PanelDirectory panelDirectory;
-        PanelIgnoredDirectories panelIgnored;
+        AddMatkul formInsertMatkul;
+        public static PanelDirectory panelDirectory;
+        public static PanelSelectedDirectories panelIgnored;
+        public static PanelFileTabs panelMain;
 
         private ToolStripItem clickedItem = null;
 
@@ -28,6 +31,10 @@ namespace KR
         {
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.SplitterDistance = 50;
+
+
+            panelMain = new PanelFileTabs();
+            splitContainer1.Panel2.Controls.Add(panelMain);
         }
 
         private void Template_DragEnter(object sender, DragEventArgs e)
@@ -73,10 +80,19 @@ namespace KR
         {
             if (panelIgnored == null)
             {
-                panelIgnored = new PanelIgnoredDirectories();
+                panelIgnored = new PanelSelectedDirectories();
             }
 
             splitContainer1.Panel1.Controls.Add(panelIgnored);
+        }
+
+        private void addMatkulToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (formInsertMatkul == null || formInsertMatkul.IsDisposed)
+            {
+                formInsertMatkul = new AddMatkul();
+            }
+            formInsertMatkul.Show();
         }
     }
 }

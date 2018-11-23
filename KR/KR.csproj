@@ -46,17 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functionalities\Matkul.cs" />
     <Compile Include="Panels\PanelDirectory.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Panels\PanelDirectory.Designer.cs">
       <DependentUpon>PanelDirectory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panels\PanelIgnoredDirectories.cs">
+    <Compile Include="Panels\PanelFileTabs.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panels\PanelIgnoredDirectories.Designer.cs">
-      <DependentUpon>PanelIgnoredDirectories.cs</DependentUpon>
+    <Compile Include="Panels\PanelFileTabs.Designer.cs">
+      <DependentUpon>PanelFileTabs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelSelectedDirectories.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelSelectedDirectories.Designer.cs">
+      <DependentUpon>PanelSelectedDirectories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\AddMatkul.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\AddMatkul.Designer.cs">
+      <DependentUpon>AddMatkul.cs</DependentUpon>
     </Compile>
     <Compile Include="Template.cs">
       <SubType>Form</SubType>
@@ -69,8 +82,11 @@
     <EmbeddedResource Include="Panels\PanelDirectory.resx">
       <DependentUpon>PanelDirectory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panels\PanelIgnoredDirectories.resx">
-      <DependentUpon>PanelIgnoredDirectories.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\PanelFileTabs.resx">
+      <DependentUpon>PanelFileTabs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelSelectedDirectories.resx">
+      <DependentUpon>PanelSelectedDirectories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -81,6 +97,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Settings\AddMatkul.resx">
+      <DependentUpon>AddMatkul.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Template.resx">
       <DependentUpon>Template.cs</DependentUpon>
     </EmbeddedResource>

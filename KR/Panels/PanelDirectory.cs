@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using KR.Functionalities;
 
 namespace KR
 {
@@ -51,9 +52,14 @@ namespace KR
             this.Dock = DockStyle.Fill;
         }
 
-        private void tree_DoubleClick(object sender, EventArgs e)
+        private void tree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            //TODO: bikin buat ngeload project
+            String selectedProject = rootDirectory + @"\" + e.Node.Text;
+            List<String> files = Directory
+                .GetFiles(selectedProject, "*.java", SearchOption.AllDirectories)
+                .Where(c => Matkul.getSelectedMatkul().getCheckedDirectories().FirstOrDefault(a => c.Contains(a)) != null)
+                .ToList();
+            Template.panelMain.readFiles(files);
         }
     }
 }
