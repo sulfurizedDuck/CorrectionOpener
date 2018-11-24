@@ -26,9 +26,15 @@ namespace KR
         {
             //TODO : Get Matkuls from a file later
             //StreamReader reader = new StreamReader("selectedDirectories.txt");
-            List<String> aList = new List<string>();
-            aList.Add(@"\app\src\main");
-            Matkul.matkuls.Add(new Matkul("COMP6153 - Operating System", aList));
+            String aName = "COMP6153 - Operating System";
+            List<String> aCheckedList = new List<string>();
+            List<String> aIgnoredList = new List<string>();
+            List<String> aExtensions = new List<string>();
+            aCheckedList.Add(@"\app\src\main");
+            aIgnoredList.Add("AndroidManifest.xml");
+            aExtensions.Add("java");
+            aExtensions.Add("xml");
+            Matkul.matkuls.Add(new Matkul(aName, aExtensions, aCheckedList, aIgnoredList));
 
             Matkul.setSelectedMatkul(Matkul.matkuls[0]);
         }

@@ -27,7 +27,7 @@ namespace KR.Panels
         
         private void initListView()
         {
-            selectedDirectories = Matkul.matkuls[0].getCheckedDirectories();
+            selectedDirectories = Matkul.matkuls[0].checkedDirectories;
             foreach (String s in selectedDirectories)
             {
                 listDirectories.Items.Add(s);

@@ -32,7 +32,6 @@ namespace KR
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.SplitterDistance = 50;
 
-
             panelMain = new PanelFileTabs();
             splitContainer1.Panel2.Controls.Add(panelMain);
         }
@@ -52,6 +51,7 @@ namespace KR
             {
                 panelDirectory = new PanelDirectory();
             }
+            splitContainer1.Panel1.Controls.Add(panelDirectory);
             panelDirectory.initTree(rootDir);
         }
 
@@ -108,6 +108,11 @@ namespace KR
             {
                 panelDirectory.switchProject(true);
             }
+        }
+
+        public void setCurrentDirectory(String root)
+        {
+            lblCurrDirectory.Text = "Current Directory: " + root;
         }
     }
 }

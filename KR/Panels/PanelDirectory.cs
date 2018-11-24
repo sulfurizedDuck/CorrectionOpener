@@ -14,8 +14,27 @@ namespace KR
 {
     public partial class PanelDirectory : UserControl
     {
+        private static TreeNode _selectedNode;
         public static String rootDirectory="";
-        public static TreeNode selectedNode;
+        public static TreeNode selectedNode
+        {
+            get
+            {
+                return _selectedNode;
+            }
+            set
+            {
+                TreeNode oldTree = _selectedNode;
+                TreeNode newTree = value;
+
+                if (oldTree != null)
+                {
+                    oldTree.BackColor = Color.White;
+                }
+                newTree.BackColor = Color.DarkGray;
+                _selectedNode = value;
+            }
+        }
 
         public PanelDirectory()
         {
@@ -24,13 +43,30 @@ namespace KR
 
         public void initTree(String rootDir)
         {
-            List<TreeNode> treeNodes = new List<TreeNode>();
+            if ((File.GetAttributes(rootDir) & FileAttributes.Directory) != FileAttributes.Directory)
+            {
+                MessageBox.Show("Please Drop Directory!");
+                return;
+            }
+
             List<String> children = getDirectories(rootDir);
-            
+
+            if (children.Count == 0)
+            {
+                MessageBox.Show("Invalid Project Directory");
+                return;
+            }
+
+            tree.Nodes.Clear();
+
             foreach(String child in children)
             {
                 tree.Nodes.Add(child);
             }
+
+            switchProject(tree.Nodes[0]);
+
+            ((SplitContainer)Parent.Parent).Panel1Collapsed = false;
         } 
 
         public List<String> getDirectories(String rootDir)
@@ -81,11 +117,17 @@ namespace KR
         {
             if (selectedNode == target)
                 return;
+
             selectedNode = target;
+
+            ((Template)Parent.Parent.Parent).setCurrentDirectory(target.Text);
+
             String selectedProject = rootDirectory + @"\" + target.Text;
             List<String> files = Directory
-                .GetFiles(selectedProject, "*.java", SearchOption.AllDirectories)
-                .Where(c => Matkul.getSelectedMatkul().getCheckedDirectories().FirstOrDefault(a => c.Contains(a)) != null)
+                .GetFiles(selectedProject, "*.*", SearchOption.AllDirectories)
+                .Where(c => Matkul.getSelectedMatkul().extensions.Any(x => c.EndsWith(x)))
+                .Where(c => Matkul.getSelectedMatkul().checkedDirectories.FirstOrDefault(a => c.Contains(a)) != null)
+                .Where(c => Matkul.getSelectedMatkul().ignoredDirectories.FirstOrDefault(a => c.Contains(a)) == null)
                 .ToList();
             Template.panelMain.readFiles(files);
         }

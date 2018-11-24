@@ -33,3 +33,4 @@ H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.Settings.AddMatkul.resources
 H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.Template.resources
 H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.csproj.GenerateResource.Cache
 H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.Panels.PanelFileTabs.resources
+F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.Panels.PanelFileTabs.resources
