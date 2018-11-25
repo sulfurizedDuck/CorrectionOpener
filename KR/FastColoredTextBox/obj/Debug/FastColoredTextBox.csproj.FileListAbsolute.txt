@@ -1,0 +1,12 @@
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\bin\Debug\FastColoredTextBox.XML
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\bin\Debug\FastColoredTextBox.dll
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\bin\Debug\FastColoredTextBox.pdb
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBox.csprojResolveAssemblyReference.cache
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBoxNS.FastColoredTextBox.resources
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBoxNS.FindForm.resources
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBoxNS.GoToForm.resources
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBoxNS.HotkeysEditorForm.resources
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBoxNS.ReplaceForm.resources
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBox.csproj.GenerateResource.Cache
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBox.dll
+D:\temp\WinformCobaCoba\FastColoredTextBox-master\FastColoredTextBox-master\FastColoredTextBox\obj\Debug\FastColoredTextBox.pdb

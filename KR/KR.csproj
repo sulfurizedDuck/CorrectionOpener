@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,72 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FastColoredTextBox\AutocompleteItem.cs" />
+    <Compile Include="FastColoredTextBox\AutocompleteMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\Bookmarks.cs" />
+    <Compile Include="FastColoredTextBox\Char.cs" />
+    <Compile Include="FastColoredTextBox\CommandManager.cs" />
+    <Compile Include="FastColoredTextBox\Commands.cs" />
+    <Compile Include="FastColoredTextBox\DocumentMap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\EncodingDetector.cs" />
+    <Compile Include="FastColoredTextBox\ExportToHTML.cs" />
+    <Compile Include="FastColoredTextBox\ExportToRTF.cs" />
+    <Compile Include="FastColoredTextBox\FastColoredTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\FileTextSource.cs" />
+    <Compile Include="FastColoredTextBox\FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\FindForm.Designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FastColoredTextBox\GoToForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\GoToForm.Designer.cs">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FastColoredTextBox\Hints.cs" />
+    <Compile Include="FastColoredTextBox\Hotkeys.cs" />
+    <Compile Include="FastColoredTextBox\HotkeysEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\HotkeysEditorForm.Designer.cs">
+      <DependentUpon>HotkeysEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FastColoredTextBox\LimitedStack.cs" />
+    <Compile Include="FastColoredTextBox\Line.cs" />
+    <Compile Include="FastColoredTextBox\LinesAccessor.cs" />
+    <Compile Include="FastColoredTextBox\MacrosManager.cs" />
+    <Compile Include="FastColoredTextBox\Place.cs" />
+    <Compile Include="FastColoredTextBox\PlatformType.cs" />
+    <Compile Include="FastColoredTextBox\Range.cs" />
+    <Compile Include="FastColoredTextBox\ReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\ReplaceForm.Designer.cs">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FastColoredTextBox\Ruler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\Ruler.Designer.cs">
+      <DependentUpon>Ruler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FastColoredTextBox\Style.cs" />
+    <Compile Include="FastColoredTextBox\SyntaxDescriptor.cs" />
+    <Compile Include="FastColoredTextBox\SyntaxHighlighter.cs" />
+    <Compile Include="FastColoredTextBox\TextSource.cs" />
+    <Compile Include="FastColoredTextBox\TypeDescriptor.cs" />
+    <Compile Include="FastColoredTextBox\UnfocusablePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FastColoredTextBox\VisualMarker.cs" />
     <Compile Include="Functionalities\Matkul.cs" />
     <Compile Include="Panels\PanelDirectory.cs">
       <SubType>UserControl</SubType>
@@ -65,6 +132,7 @@
     <Compile Include="Panels\PanelSelectedDirectories.Designer.cs">
       <DependentUpon>PanelSelectedDirectories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Settings\AddMatkul.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,8 +145,22 @@
     <Compile Include="Template.Designer.cs">
       <DependentUpon>Template.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FastColoredTextBox\FastColoredTextBox.resx">
+      <DependentUpon>FastColoredTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastColoredTextBox\FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastColoredTextBox\GoToForm.resx">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastColoredTextBox\HotkeysEditorForm.resx">
+      <DependentUpon>HotkeysEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastColoredTextBox\ReplaceForm.resx">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelDirectory.resx">
       <DependentUpon>PanelDirectory.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +198,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

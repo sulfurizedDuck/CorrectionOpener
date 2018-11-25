@@ -113,6 +113,10 @@ namespace KR
                     return;
                 panelDirectory.switchProject(true);
             }
+            else if (e.Control && e.KeyCode == Keys.W && panelMain != null)
+            {
+                panelMain.PanelFileTabs_KeyDown(sender, e);
+            }
         }
 
         public void setCurrentDirectory(String root)

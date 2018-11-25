@@ -26,7 +26,7 @@ namespace KR
         {
             //TODO : Get Matkuls from a file later
             //StreamReader reader = new StreamReader("selectedDirectories.txt");
-            String aName = "COMP6153 - Operating System";
+            String aName = "MOBI6006 - Mobile Community Solution";
             List<String> aCheckedList = new List<string>();
             List<String> aIgnoredList = new List<string>();
             List<String> aExtensions = new List<string>();

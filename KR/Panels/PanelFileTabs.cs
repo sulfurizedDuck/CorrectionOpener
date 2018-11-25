@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using FastColoredTextBoxNS;
 
 namespace KR.Panels
 {
@@ -24,43 +25,38 @@ namespace KR.Panels
             tabFiles.TabPages.Clear();
             foreach (String file in files)
             {
-                RichTextBox rtb = createRichTextBox(File.ReadAllText(file));
+                FastColoredTextBox fctb = createFCTB(File.ReadAllText(file), file.Substring(file.LastIndexOf('.')+1));
                 tabFiles.TabPages.Add(file.Substring(file.LastIndexOf('\\')+1));
-                tabFiles.TabPages[tabFiles.TabPages.Count - 1].Controls.Add(rtb);
+                tabFiles.TabPages[tabFiles.TabPages.Count - 1].Controls.Add(fctb);
             }
         }
 
-        private RichTextBox createRichTextBox(String text)
+        private FastColoredTextBox createFCTB(String text, String language)
         {
-            RichTextBox myCustomRTB = new RichTextBox()
-            {
-                Dock = DockStyle.Fill,
-                Font = new Font("Consolas", 14, FontStyle.Regular),
-                AcceptsTab = true,
-            };
-            myCustomRTB.KeyDown += MyCustomRTB_KeyDown; ;
-            myCustomRTB.SelectionTabs = new int[] { 40, 80, 120, 160, 200, 240, 280, 320, 360, 400 };
-            myCustomRTB.Text = text;
-            return myCustomRTB;
-        }
+            FastColoredTextBox fctb = new FastColoredTextBox();
+            fctb.Dock = DockStyle.Fill;
+            fctb.Text = text;
+            fctb.Font = new Font("Consolas", 14, FontStyle.Regular);
+            fctb.WordWrap = true;
 
-        private void MyCustomRTB_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.F)
+            switch(language.ToLower())
             {
-                pnlFind.Visible = true;
-                pnlFindAll.Visible = false;
+                case "cs": fctb.Language = Language.CSharp; break;
+                case "html": fctb.Language = Language.HTML; break;
+                case "js": fctb.Language = Language.JS; break;
+                case "jsx": fctb.Language = Language.JS; break;
+                case "lua": fctb.Language = Language.Lua; break;
+                case "php": fctb.Language = Language.PHP; break;
+                case "sql": fctb.Language = Language.SQL; break;
+                case "vb": fctb.Language = Language.VB; break;
+                case "xml": fctb.Language = Language.XML; break;
+                default: fctb.Language = Language.Custom; break;
             }
-            else if (e.Control && e.Shift && e.KeyCode == Keys.F)
-            {
-                pnlFind.Visible = false;
-                pnlFindAll.Visible = true;
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                pnlFind.Visible = false;
-                pnlFindAll.Visible = false;
-            }
+            fctb.ClearStylesBuffer();
+            fctb.Range.ClearStyle(StyleIndex.All);
+            fctb.OnSyntaxHighlight(new TextChangedEventArgs(fctb.Range));
+
+            return fctb;
         }
 
         private void PanelFileTabs_Load(object sender, EventArgs e)
@@ -68,14 +64,15 @@ namespace KR.Panels
             this.Dock = DockStyle.Fill;
         }
 
-        private void txtFind_TextChanged(object sender, EventArgs e)
+        public void PanelFileTabs_KeyDown(object sender, KeyEventArgs e)
         {
-
-        }
-
-        private void txtFindAll_KeyDown(object sender, KeyEventArgs e)
-        {
-
+            if (e.Control && e.KeyCode == Keys.W)
+            {
+                if (tabFiles.TabPages.Count != 0)
+                {
+                    tabFiles.TabPages.Remove(tabFiles.SelectedTab);
+                }
+            }
         }
     }
 }
