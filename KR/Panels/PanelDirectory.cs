@@ -97,6 +97,9 @@ namespace KR
 
         public void switchProject(bool isNext)
         {
+            if (tree.Nodes.Count == 0)
+                return;
+
             int currentIndex = tree.Nodes.IndexOf(selectedNode);
             int targetedIndex = currentIndex;
 

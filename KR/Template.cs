@@ -103,9 +103,14 @@ namespace KR
         {
             if (e.Alt && e.KeyCode == Keys.Left)
             {
+                if (panelDirectory == null)
+                    return;
                 panelDirectory.switchProject(false);
-            } else if (e.Alt && e.KeyCode == Keys.Right)
+            }
+            else if (e.Alt && e.KeyCode == Keys.Right)
             {
+                if (panelDirectory == null)
+                    return;
                 panelDirectory.switchProject(true);
             }
         }
