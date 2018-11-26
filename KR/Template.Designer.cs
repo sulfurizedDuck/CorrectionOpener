@@ -62,17 +62,18 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // matkulToolStripMenuItem
             // 
             this.matkulToolStripMenuItem.Name = "matkulToolStripMenuItem";
-            this.matkulToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.matkulToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.matkulToolStripMenuItem.Text = "Matkuls";
             // 
             // addMatkulToolStripMenuItem
             // 
             this.addMatkulToolStripMenuItem.Name = "addMatkulToolStripMenuItem";
-            this.addMatkulToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.addMatkulToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addMatkulToolStripMenuItem.Text = "Add Matkul";
             this.addMatkulToolStripMenuItem.Click += new System.EventHandler(this.addMatkulToolStripMenuItem_Click);
             // 

@@ -13,7 +13,8 @@ namespace KR.Panels
 {
     public partial class PanelSelectedDirectories : UserControl
     {
-        private List<String> selectedDirectories;
+        private List<String> checkedDirectories;
+        private List<String> ignoredDirectories;
         public PanelSelectedDirectories()
         {
             InitializeComponent();
@@ -25,13 +26,22 @@ namespace KR.Panels
             this.Dock = DockStyle.Fill;
         }
         
-        private void initListView()
+        public void initListView()
         {
-            selectedDirectories = Matkul.matkuls[0].checkedDirectories;
-            foreach (String s in selectedDirectories)
+            checkedDirectories = Matkul.matkuls[0].checkedDirectories;
+            foreach (String s in checkedDirectories)
             {
-                listDirectories.Items.Add(s);
+                listSelected.Items.Add(s);
             }
+
+            ignoredDirectories = Matkul.matkuls[0].ignoredDirectories;
+            foreach(String s in ignoredDirectories)
+            {
+                listIgnored.Items.Add(s);
+            }
+
+            MessageBox.Show(checkedDirectories.Count.ToString());
+            MessageBox.Show(ignoredDirectories.Count.ToString());
         }
     }
 }

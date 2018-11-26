@@ -16,27 +16,10 @@ namespace KR
         [STAThread]
         static void Main()
         {
-            initMatkuls();
+            Matkul.initMatkuls();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Template());
-        }
-
-        private static void initMatkuls()
-        {
-            //TODO : Get Matkuls from a file later
-            //StreamReader reader = new StreamReader("selectedDirectories.txt");
-            String aName = "MOBI6006 - Mobile Community Solution";
-            List<String> aCheckedList = new List<string>();
-            List<String> aIgnoredList = new List<string>();
-            List<String> aExtensions = new List<string>();
-            aCheckedList.Add(@"\app\src\main");
-            aIgnoredList.Add("AndroidManifest.xml");
-            aExtensions.Add("java");
-            aExtensions.Add("xml");
-            Matkul.matkuls.Add(new Matkul(aName, aExtensions, aCheckedList, aIgnoredList));
-
-            Matkul.setSelectedMatkul(Matkul.matkuls[0]);
         }
     }
 }
