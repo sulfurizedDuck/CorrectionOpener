@@ -1,9 +1,10 @@
-- CRUD Matkul
-- Choose Matkul
 - Directories::allChildren() && Directories::filteredChildren()
 - Shortcut::findAll()
 - Shortcut::findFiles()
 - Language::choose()
 - Intellisense
+- Compile
+- Excel Preview
+- Notes
 
 (https://stackoverflow.com/questions/10587715/multi-color-textbox-c-sharp)

@@ -39,3 +39,8 @@ H:\Ast\Ideas\CorrectionOpener\KR\KR\bin\Debug\KR.exe
 H:\Ast\Ideas\CorrectionOpener\KR\KR\bin\Debug\KR.pdb
 H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.exe
 H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.pdb
+F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.FastColoredTextBox.resources
+F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.FindForm.resources
+F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.GoToForm.resources
+F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.HotkeysEditorForm.resources
+F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.ReplaceForm.resources

@@ -128,10 +128,20 @@ namespace KR
             String selectedProject = rootDirectory + @"\" + target.Text;
             List<String> files = Directory
                 .GetFiles(selectedProject, "*.*", SearchOption.AllDirectories)
-                .Where(c => Matkul.getSelectedMatkul().extensions.Any(x => c.EndsWith(x)))
-                .Where(c => Matkul.getSelectedMatkul().checkedDirectories.FirstOrDefault(a => c.Contains(a)) != null)
-                .Where(c => Matkul.getSelectedMatkul().ignoredDirectories.FirstOrDefault(a => c.Contains(a)) == null)
+                .Where(c => Matkul.selectedMatkul.extensions.Any(x => c.EndsWith(x)))
                 .ToList();
+            if (Matkul.selectedMatkul.checkedDirectories.Count > 0)
+            {
+                files = files
+                    .Where(c => Matkul.selectedMatkul.checkedDirectories.FirstOrDefault(a => c.Contains(a)) != null)
+                    .ToList();
+            }
+            if (Matkul.selectedMatkul.ignoredDirectories.Count > 0)
+            {
+                files = files
+                    .Where(c => Matkul.selectedMatkul.ignoredDirectories.FirstOrDefault(a => c.Contains(a)) == null)
+                    .ToList();
+            }
             Template.panelMain.readFiles(files);
         }
     }

@@ -1,4 +1,5 @@
-﻿using KR.Panels;
+﻿using KR.Functionalities;
+using KR.Panels;
 using KR.Settings;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,15 @@ namespace KR
         public Template()
         {
             InitializeComponent();
+            initPanels();
             configureSplitContainer();
+        }
+
+        private void initPanels()
+        {
+            panelDirectory = new PanelDirectory();
+            panelIgnored = new PanelSelectedDirectories();
+            panelMain = new PanelFileTabs();
         }
 
         private void configureSplitContainer()
@@ -122,6 +131,32 @@ namespace KR
         public void setCurrentDirectory(String root)
         {
             lblCurrDirectory.Text = "Current Directory: " + root;
+        }
+
+        public void updateListMatkuls()
+        {
+            Matkul.initMatkuls();
+            matkulToolStripMenuItem.DropDownItems.Clear();
+            foreach(Matkul matkul in Matkul.matkuls)
+            {
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(matkul.matkulName);
+                tsmi.Click += Tsmi_Click;
+                matkulToolStripMenuItem.DropDownItems.Add(tsmi);
+            }
+        }
+
+        private void Tsmi_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem clicker = ((ToolStripMenuItem)sender);
+            int index = matkulToolStripMenuItem.DropDownItems.IndexOf(clicker);
+
+            Matkul.selectedMatkul = Matkul.matkuls[index];
+            panelIgnored.initListView();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updateListMatkuls();
         }
     }
 }
