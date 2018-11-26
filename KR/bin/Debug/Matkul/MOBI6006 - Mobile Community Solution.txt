@@ -1,0 +1,4 @@
+.xml#.java
+\src\main\
+\drawable#\mipmap#\values
+
