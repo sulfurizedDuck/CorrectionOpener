@@ -25,9 +25,11 @@ namespace KR.Panels
             tabFiles.TabPages.Clear();
             foreach (String file in files)
             {
+                TabPage newTab = new TabPage(file.Substring(file.LastIndexOf('\\') + 1));
                 FastColoredTextBox fctb = createFCTB(File.ReadAllText(file), file.Substring(file.LastIndexOf('.')+1));
-                tabFiles.TabPages.Add(file.Substring(file.LastIndexOf('\\')+1));
-                tabFiles.TabPages[tabFiles.TabPages.Count - 1].Controls.Add(fctb);
+                newTab.Controls.Add(fctb);
+                
+                tabFiles.TabPages.Add(newTab);
             }
         }
 
@@ -42,6 +44,8 @@ namespace KR.Panels
             switch(language.ToLower())
             {
                 case "cs": fctb.Language = Language.CSharp; break;
+                case "cpp": fctb.Language = Language.CSharp; break;
+                case "c": fctb.Language = Language.CSharp; break;
                 case "html": fctb.Language = Language.HTML; break;
                 case "js": fctb.Language = Language.JS; break;
                 case "jsx": fctb.Language = Language.JS; break;
@@ -50,6 +54,7 @@ namespace KR.Panels
                 case "sql": fctb.Language = Language.SQL; break;
                 case "vb": fctb.Language = Language.VB; break;
                 case "xml": fctb.Language = Language.XML; break;
+                case "java": fctb.Language = Language.CSharp; break;
                 default: fctb.Language = Language.Custom; break;
             }
             fctb.ClearStylesBuffer();

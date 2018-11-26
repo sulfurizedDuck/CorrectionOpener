@@ -21,10 +21,6 @@ namespace KR.Functionalities
             }
             set
             {
-                if (value == null)
-                {
-                    value = new Matkul("", null, null);
-                }
                 _selectedMatkul = value;
             }
         }
@@ -66,13 +62,9 @@ namespace KR.Functionalities
             get
             {
                 return _checkedDirectories;
-            } 
+            }
             set
             {
-                if (value == null)
-                {
-                    value = new List<string>();
-                }
                 _checkedDirectories = value;
             }
         }
@@ -81,7 +73,7 @@ namespace KR.Functionalities
             get
             {
                 return _ignoredDirectories;
-            } 
+            }
             set
             {
                 if (value == null)
@@ -103,6 +95,8 @@ namespace KR.Functionalities
 
         public static void initMatkuls()
         {
+            matkuls.Clear();
+
             #region Get All The Matkul Files
             List<String> files = Directory.GetFiles(@"Matkul", "*.txt").ToList();
             #endregion
@@ -117,35 +111,29 @@ namespace KR.Functionalities
                         file.LastIndexOf(@".") - file.LastIndexOf(@"\") - 1
                     );
 
+                List<String> extensions = new List<string>();
                 List<String> checkedDirectories = new List<string>();
                 List<String> ignoredDirectories = new List<string>();
 
-                checkedDirectories = fileContent[0].Split('#').ToList();
-                ignoredDirectories = fileContent[1].Split('#').ToList();
+                extensions = fileContent[0].Split('#').ToList();
+                checkedDirectories = fileContent[1].Split('#').ToList();
+                ignoredDirectories = fileContent[2].Split('#').ToList();
 
-                if (checkedDirectories.Count == 1 && checkedDirectories[0] == "")
+                if (checkedDirectories.Count == 1 && checkedDirectories[0].Equals(""))
                 {
                     checkedDirectories.Clear();
                 }
-                if (ignoredDirectories.Count == 1 && ignoredDirectories[0] == "")
+                if (ignoredDirectories.Count == 1 && ignoredDirectories[0].Equals(""))
                 {
                     ignoredDirectories.Clear();
                 }
-                MessageBox.Show(checkedDirectories.Count.ToString());
-                MessageBox.Show(ignoredDirectories.Count.ToString());
-
-                Matkul newMatkul = new Matkul(matkulName, checkedDirectories, ignoredDirectories);
+                Matkul newMatkul = new Matkul(matkulName, extensions, checkedDirectories, ignoredDirectories);
                 matkuls.Add(newMatkul);
             }
             #endregion
 
-            matkuls.Clear();
-            if (matkuls.Count == 0)
-            {
-                initMatkulDummy();
-            }
+            selectedMatkul = matkuls[0];
 
-            selectedMatkul = matkuls.FirstOrDefault();
         }
 
         public static void initMatkulDummy()

@@ -135,6 +135,7 @@ namespace KR
 
         public void updateListMatkuls()
         {
+            Matkul.initMatkuls();
             matkulToolStripMenuItem.DropDownItems.Clear();
             foreach(Matkul matkul in Matkul.matkuls)
             {

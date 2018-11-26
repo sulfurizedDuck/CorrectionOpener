@@ -28,20 +28,19 @@ namespace KR.Panels
         
         public void initListView()
         {
-            checkedDirectories = Matkul.matkuls[0].checkedDirectories;
+            checkedDirectories = Matkul.selectedMatkul.checkedDirectories;
+            listSelected.Items.Clear();
             foreach (String s in checkedDirectories)
             {
                 listSelected.Items.Add(s);
             }
 
-            ignoredDirectories = Matkul.matkuls[0].ignoredDirectories;
+            ignoredDirectories = Matkul.selectedMatkul.ignoredDirectories;
+            listIgnored.Items.Clear();
             foreach(String s in ignoredDirectories)
             {
                 listIgnored.Items.Add(s);
             }
-
-            MessageBox.Show(checkedDirectories.Count.ToString());
-            MessageBox.Show(ignoredDirectories.Count.ToString());
         }
     }
 }

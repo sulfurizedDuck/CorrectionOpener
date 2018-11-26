@@ -1,5 +1,3 @@
-- CRUD Matkul
-- Choose Matkul
 - Directories::allChildren() && Directories::filteredChildren()
 - Shortcut::findAll()
 - Shortcut::findFiles()
