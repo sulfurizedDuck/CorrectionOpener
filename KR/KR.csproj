@@ -132,6 +132,12 @@
     <Compile Include="Panels\PanelSelectedDirectories.Designer.cs">
       <DependentUpon>PanelSelectedDirectories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\SearchFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\SearchFiles.Designer.cs">
+      <DependentUpon>SearchFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Settings\AddMatkul.cs">
       <SubType>Form</SubType>
@@ -139,6 +145,7 @@
     <Compile Include="Settings\AddMatkul.Designer.cs">
       <DependentUpon>AddMatkul.cs</DependentUpon>
     </Compile>
+    <Compile Include="Style\MenuStripColor.cs" />
     <Compile Include="Template.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelSelectedDirectories.resx">
       <DependentUpon>PanelSelectedDirectories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\SearchFiles.resx">
+      <DependentUpon>SearchFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

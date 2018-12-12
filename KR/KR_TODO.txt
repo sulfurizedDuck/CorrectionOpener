@@ -1,7 +1,6 @@
 - Directories::allChildren() && Directories::filteredChildren()
 - Shortcut::findAll()
 - Shortcut::findFiles()
-- Language::choose()
 - Intellisense
 - Compile
 - Excel Preview

@@ -40,38 +40,43 @@
             this.tabFiles.Controls.Add(this.tabPage2);
             this.tabFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFiles.Location = new System.Drawing.Point(0, 0);
+            this.tabFiles.Margin = new System.Windows.Forms.Padding(2);
             this.tabFiles.Name = "tabFiles";
             this.tabFiles.SelectedIndex = 0;
-            this.tabFiles.Size = new System.Drawing.Size(645, 472);
+            this.tabFiles.Size = new System.Drawing.Size(484, 384);
             this.tabFiles.TabIndex = 0;
+            this.tabFiles.SelectedIndexChanged += new System.EventHandler(this.tabFiles_SelectedIndexChanged);
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(637, 443);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Size = new System.Drawing.Size(476, 358);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(637, 443);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Size = new System.Drawing.Size(476, 358);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // PanelFileTabs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabFiles);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PanelFileTabs";
-            this.Size = new System.Drawing.Size(645, 472);
+            this.Size = new System.Drawing.Size(484, 384);
             this.Load += new System.EventHandler(this.PanelFileTabs_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PanelFileTabs_KeyDown);
             this.tabFiles.ResumeLayout(false);

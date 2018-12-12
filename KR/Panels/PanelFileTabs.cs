@@ -26,11 +26,20 @@ namespace KR.Panels
             foreach (String file in files)
             {
                 TabPage newTab = new TabPage(file.Substring(file.LastIndexOf('\\') + 1));
+                newTab.Name = file;
                 FastColoredTextBox fctb = createFCTB(File.ReadAllText(file), file.Substring(file.LastIndexOf('.')+1));
                 newTab.Controls.Add(fctb);
                 
                 tabFiles.TabPages.Add(newTab);
             }
+
+            if (tabFiles.TabPages.Count > 0)
+            {
+                Template parent = (Template)Parent.Parent.Parent;
+                TabPage selectedTab = tabFiles.SelectedTab;
+                parent.setCurrentPath(selectedTab.Name);
+            }
+
         }
 
         private FastColoredTextBox createFCTB(String text, String language)
@@ -78,6 +87,18 @@ namespace KR.Panels
                     tabFiles.TabPages.Remove(tabFiles.SelectedTab);
                 }
             }
+        }
+
+        private void tabFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Template parent = (Template)Parent.Parent.Parent;
+            TabPage selectedTab = ((TabControl)sender).SelectedTab;
+
+            if (selectedTab != null)
+            {
+                parent.setCurrentPath(selectedTab.Name);
+            }
+
         }
     }
 }

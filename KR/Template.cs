@@ -1,11 +1,13 @@
 ﻿using KR.Functionalities;
 using KR.Panels;
 using KR.Settings;
+using KR.Style;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,7 @@ namespace KR
         public static PanelDirectory panelDirectory;
         public static PanelSelectedDirectories panelIgnored;
         public static PanelFileTabs panelMain;
+        public static SearchFiles panelSearchFiles;
 
         private ToolStripItem clickedItem = null;
 
@@ -56,12 +59,7 @@ namespace KR
         private void Template_DragDrop(object sender, DragEventArgs e)
         {
             String rootDir = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
-            if (panelDirectory == null)
-            {
-                panelDirectory = new PanelDirectory();
-            }
-            splitContainer1.Panel1.Controls.Add(panelDirectory);
-            panelDirectory.initTree(rootDir);
+            loadFolders(rootDir);
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -110,19 +108,7 @@ namespace KR
 
         private void Template_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Alt && e.KeyCode == Keys.Left)
-            {
-                if (panelDirectory == null)
-                    return;
-                panelDirectory.switchProject(false);
-            }
-            else if (e.Alt && e.KeyCode == Keys.Right)
-            {
-                if (panelDirectory == null)
-                    return;
-                panelDirectory.switchProject(true);
-            }
-            else if (e.Control && e.KeyCode == Keys.W && panelMain != null)
+            if (e.Control && e.KeyCode == Keys.W && panelMain != null)
             {
                 panelMain.PanelFileTabs_KeyDown(sender, e);
             }
@@ -131,6 +117,11 @@ namespace KR
         public void setCurrentDirectory(String root)
         {
             lblCurrDirectory.Text = "Current Directory: " + root;
+        }
+
+        public void setCurrentPath(String path)
+        {
+            this.Text = path + " - Correction Opener";
         }
 
         public void updateListMatkuls()
@@ -157,6 +148,58 @@ namespace KR
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             updateListMatkuls();
+        }
+
+        private void Template_Load(object sender, EventArgs e)
+        {
+            //menuStripAbove.Renderer = new ToolStripProfessionalRenderer(new MenuStripColor());
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+
+            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            {
+                loadFolders(fbd.SelectedPath);
+            }
+        }
+
+        private void loadFolders(String rootDir)
+        {
+            if (panelDirectory == null)
+            {
+                panelDirectory = new PanelDirectory();
+            }
+            splitContainer1.Panel1.Controls.Add(panelDirectory);
+            panelDirectory.initTree(rootDir);
+        }
+
+        private void nextProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (panelDirectory == null)
+                return;
+            panelDirectory.switchProject(true);
+        }
+
+        private void previousProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (panelDirectory == null)
+                return;
+            panelDirectory.switchProject(false);
+        }
+
+        private void gotoAnythingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (panelSearchFiles == null || panelSearchFiles.IsDisposed)
+            {
+                panelSearchFiles = new SearchFiles();
+                
+            }
+            panelSearchFiles.Show();
+            panelSearchFiles.BringToFront();
+            MessageBox.Show(panelSearchFiles.Location.X + " " + panelSearchFiles.Location.Y);
         }
     }
 }
