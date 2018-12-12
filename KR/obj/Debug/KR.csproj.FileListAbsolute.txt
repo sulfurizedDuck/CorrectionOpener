@@ -45,3 +45,5 @@ F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.GoToForm.reso
 F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.HotkeysEditorForm.resources
 F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\FastColoredTextBoxNS.ReplaceForm.resources
 F:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.Panels.SearchFiles.resources
+H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.Panels.SearchFiles.resources
+H:\Ast\Ideas\CorrectionOpener\KR\KR\obj\Debug\KR.Panels.PanelProject.resources

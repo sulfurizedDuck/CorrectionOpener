@@ -122,10 +122,12 @@ namespace KR
                 return;
 
             selectedNode = target;
-
-            ((Template)Parent.Parent.Parent).setCurrentDirectory(target.Text);
+            Template parent = (Template)Parent.Parent.Parent;
+            parent.setCurrentDirectory(target.Text);
 
             String selectedProject = rootDirectory + @"\" + target.Text;
+
+            #region Getting files that should be shown 
             List<String> files = Directory
                 .GetFiles(selectedProject, "*.*", SearchOption.AllDirectories)
                 .Where(c => Matkul.selectedMatkul.extensions.Any(x => c.EndsWith(x)))
@@ -143,6 +145,15 @@ namespace KR
                     .ToList();
             }
             Template.panelMain.readFiles(files);
+            #endregion
+
+            #region Set suggestion for Goto
+            Template.panelSearchFiles.loadSuggestions(selectedProject);
+            #endregion
+
+            #region getting all files in folders
+            Template.panelProject.loadProject(selectedProject);
+            #endregion
         }
     }
 }

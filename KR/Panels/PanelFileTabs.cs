@@ -25,12 +25,7 @@ namespace KR.Panels
             tabFiles.TabPages.Clear();
             foreach (String file in files)
             {
-                TabPage newTab = new TabPage(file.Substring(file.LastIndexOf('\\') + 1));
-                newTab.Name = file;
-                FastColoredTextBox fctb = createFCTB(File.ReadAllText(file), file.Substring(file.LastIndexOf('.')+1));
-                newTab.Controls.Add(fctb);
-                
-                tabFiles.TabPages.Add(newTab);
+                addTab(file);
             }
 
             if (tabFiles.TabPages.Count > 0)
@@ -40,6 +35,32 @@ namespace KR.Panels
                 parent.setCurrentPath(selectedTab.Name);
             }
 
+        }
+
+        public int addTab(String file)
+        {
+            int i = 0;
+            foreach (TabPage tab in tabFiles.TabPages)
+            {
+                if (tab.Name.Equals(file))
+                {
+                    return i;
+                }
+                i++;
+            }
+
+            TabPage newTab = new TabPage(file.Substring(file.LastIndexOf('\\') + 1));
+            newTab.Name = file;
+            FastColoredTextBox fctb = createFCTB(File.ReadAllText(file), file.Substring(file.LastIndexOf('.') + 1));
+            newTab.Controls.Add(fctb);
+
+            tabFiles.TabPages.Add(newTab);
+            return tabFiles.TabPages.Count - 1;
+        }
+
+        public void switchTab(int tabNumber)
+        {
+            tabFiles.SelectedTab = tabFiles.TabPages[tabNumber];
         }
 
         private FastColoredTextBox createFCTB(String text, String language)

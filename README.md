@@ -8,3 +8,4 @@ NOTES:
 
 Used 'libraries':
 1. https://github.com/PavelTorgashov/FastColoredTextBox
+2. https://www.codeproject.com/Tips/801004/WPF-AutoComplete-TextBox (Potential)

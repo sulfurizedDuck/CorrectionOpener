@@ -22,14 +22,18 @@ namespace KR
         public static PanelSelectedDirectories panelIgnored;
         public static PanelFileTabs panelMain;
         public static SearchFiles panelSearchFiles;
+        public static PanelProject panelProject;
 
         private ToolStripItem clickedItem = null;
+
+        private string rootDir;
 
         public Template()
         {
             InitializeComponent();
             initPanels();
             configureSplitContainer();
+            updateListMatkuls();
         }
 
         private void initPanels()
@@ -37,6 +41,8 @@ namespace KR
             panelDirectory = new PanelDirectory();
             panelIgnored = new PanelSelectedDirectories();
             panelMain = new PanelFileTabs();
+            panelSearchFiles = new SearchFiles();
+            panelProject = new PanelProject();
         }
 
         private void configureSplitContainer()
@@ -46,6 +52,8 @@ namespace KR
 
             panelMain = new PanelFileTabs();
             splitContainer1.Panel2.Controls.Add(panelMain);
+
+            panelHolder.Controls.Add(panelSearchFiles);
         }
 
         private void Template_DragEnter(object sender, DragEventArgs e)
@@ -59,6 +67,7 @@ namespace KR
         private void Template_DragDrop(object sender, DragEventArgs e)
         {
             String rootDir = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+            this.rootDir = rootDir;
             loadFolders(rootDir);
         }
 
@@ -85,6 +94,16 @@ namespace KR
             }
 
             splitContainer1.Panel1.Controls.Add(panelDirectory);
+        }
+
+        private void projectMenuItem_Click(object sender, EventArgs e)
+        {
+            if (panelProject == null)
+            {
+                panelProject = new PanelProject();
+            }
+
+            splitContainer1.Panel1.Controls.Add(panelProject);
         }
 
         private void ignoredDirectoriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,20 +153,28 @@ namespace KR
                 tsmi.Click += Tsmi_Click;
                 matkulToolStripMenuItem.DropDownItems.Add(tsmi);
             }
+            foreach (ToolStripMenuItem item in matkulToolStripMenuItem.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            ((ToolStripMenuItem)matkulToolStripMenuItem.DropDownItems[0]).Checked = true;
         }
 
         private void Tsmi_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem clicker = ((ToolStripMenuItem)sender);
+
+            foreach (ToolStripMenuItem item in clicker.Owner.Items)
+            {
+                item.Checked = false;
+            }
+            clicker.Checked = true;
+
+
             int index = matkulToolStripMenuItem.DropDownItems.IndexOf(clicker);
 
             Matkul.selectedMatkul = Matkul.matkuls[index];
             panelIgnored.initListView();
-        }
-
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            updateListMatkuls();
         }
 
         private void Template_Load(object sender, EventArgs e)
@@ -192,14 +219,16 @@ namespace KR
 
         private void gotoAnythingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (panelSearchFiles == null || panelSearchFiles.IsDisposed)
-            {
-                panelSearchFiles = new SearchFiles();
-                
-            }
-            panelSearchFiles.Show();
-            panelSearchFiles.BringToFront();
-            MessageBox.Show(panelSearchFiles.Location.X + " " + panelSearchFiles.Location.Y);
+            #region Change Location of Panel2's panelHolder For Goto
+            int panelWidth = splitContainer1.Panel2.Width;
+            int holderWidth = panelHolder.Width;
+            int x = (panelWidth - holderWidth) / 2;
+            int y = panelHolder.Location.Y;
+            panelHolder.Location = new Point(x, y);
+            #endregion
+
+            panelHolder.Visible = true;
         }
+
     }
 }
