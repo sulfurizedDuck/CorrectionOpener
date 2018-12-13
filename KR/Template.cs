@@ -18,9 +18,7 @@ namespace KR
     public partial class Template : Form
     {
         AddMatkul formInsertMatkul;
-
         private ToolStripItem clickedItem = null;
-        
 
         public Template()
         {
@@ -37,19 +35,32 @@ namespace KR
             splitContainer1.Panel2.Controls.Add(GlobalVariables.panelMain);
 
             panelHolder.Controls.Add(GlobalVariables.panelSearchFiles);
+
+            splitContainerExcel.Panel2Collapsed = true;
+            splitContainerExcel.SplitterDistance = splitContainerExcel.Height* 3 / 4;
+
+            ((Panel)splitContainer1.Panel1).VisibleChanged += Template_VisibleChanged;
+            ((Panel)splitContainerExcel.Panel2).VisibleChanged += Template_VisibleChanged1;
         }
 
         private void Template_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                e.Effect = DragDropEffects.Copy;
+                string rootDir = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+                if ((File.GetAttributes(rootDir) & FileAttributes.Directory) != FileAttributes.Directory)
+                {
+                    e.Effect = DragDropEffects.None;
+                } else
+                {
+                    e.Effect = DragDropEffects.Copy;
+                }
             }
         }
 
         private void Template_DragDrop(object sender, DragEventArgs e)
         {
-            String rootDir = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+            string rootDir = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
             GlobalVariables.rootDirectory = rootDir;
             loadFolders();
         }
@@ -60,7 +71,8 @@ namespace KR
             if (e.ClickedItem == clickedItem)
             {
                 splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
-            } else
+            }
+            else
             {
                 splitContainer1.Panel1Collapsed = false;
             }
@@ -142,11 +154,6 @@ namespace KR
             GlobalVariables.panelSelectedDirectories.initListView();
         }
 
-        private void Template_Load(object sender, EventArgs e)
-        {
-            //menuStripAbove.Renderer = new ToolStripProfessionalRenderer(new MenuStripColor());
-        }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -201,6 +208,42 @@ namespace KR
         private void closeWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            splitContainerExcel.Panel2Collapsed = !splitContainerExcel.Panel2Collapsed;
+        }
+
+        private void Template_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!splitContainer1.Panel1Collapsed)
+            {
+                splitContainerExcel.Panel2Collapsed = true;
+            }
+        }
+
+        private void Template_VisibleChanged1(object sender, EventArgs e)
+        {
+            splitContainerExcel.Panel2.Controls.Clear();
+            if (!splitContainerExcel.Panel2Collapsed)
+            {
+                splitContainer1.Panel1Collapsed = true;
+                openPanelExcel();
+            }
+        }
+
+        public void openPanelExcel()
+        {
+            if (GlobalVariables.excelPath == "")
+            {
+                splitContainerExcel.Panel2.Controls.Add(GlobalVariables.panelLoadExcel);
+                GlobalVariables.panelLoadExcel.adjustPosition();
+            }
+            else
+            {
+                splitContainerExcel.Panel2.Controls.Add(GlobalVariables.panelExcel);
+            }
         }
     }
 }

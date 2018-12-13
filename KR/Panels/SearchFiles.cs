@@ -30,7 +30,7 @@ namespace KR.Panels
 
         private void SearchFiles_Load(object sender, EventArgs e)
         {
-            txtSearch.Select();
+            txtSearch.Focus();
         }
 
         private void SearchFiles_Leave(object sender, EventArgs e)
@@ -78,6 +78,14 @@ namespace KR.Panels
         {
             txtSearch.Text = "";
             Parent.Visible = false;
+        }
+
+        private void SearchFiles_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible)
+            {
+                txtSearch.Focus();
+            }
         }
     }
 }

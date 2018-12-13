@@ -37,7 +37,7 @@ namespace KR.Panels
 
         }
 
-        public int addTab(String file)
+        public int addTab(string file)
         {
             int i = 0;
             foreach (TabPage tab in tabFiles.TabPages)

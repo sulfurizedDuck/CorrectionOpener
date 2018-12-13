@@ -35,6 +35,8 @@ namespace KR.Functionalities
             }
         }
 
+        public static string excelPath="";
+
         private static List<Matkul> _matkuls;
         public static List<Matkul> matkuls
         {
@@ -154,6 +156,40 @@ namespace KR.Functionalities
             set
             {
                 _panelSearchFiles = value;
+            }
+        }
+
+        private static PanelLoadExcel _panelLoadExcel;
+        public static PanelLoadExcel panelLoadExcel
+        {
+            get
+            {
+                if (_panelLoadExcel == null)
+                {
+                    _panelLoadExcel = new PanelLoadExcel();
+                }
+                return _panelLoadExcel;
+            }
+            set
+            {
+                _panelLoadExcel = value;
+            }
+        }
+
+        private static PanelExcel _panelExcel;
+        public static PanelExcel panelExcel
+        {
+            get
+            {
+                if (_panelExcel == null)
+                {
+                    _panelExcel = new PanelExcel();
+                }
+                return _panelExcel;
+            }
+            set
+            {
+                _panelExcel = value;
             }
         }
         #endregion

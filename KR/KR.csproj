@@ -121,6 +121,12 @@
     <Compile Include="Panels\PanelDirectory.Designer.cs">
       <DependentUpon>PanelDirectory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\PanelExcel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelExcel.Designer.cs">
+      <DependentUpon>PanelExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\PanelFileTabs.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +138,12 @@
     </Compile>
     <Compile Include="Panels\PanelHolder.Designer.cs">
       <DependentUpon>PanelHolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelLoadExcel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelLoadExcel.Designer.cs">
+      <DependentUpon>PanelLoadExcel.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\PanelProject.cs">
       <SubType>UserControl</SubType>
@@ -184,8 +196,14 @@
     <EmbeddedResource Include="Panels\PanelDirectory.resx">
       <DependentUpon>PanelDirectory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelExcel.resx">
+      <DependentUpon>PanelExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelFileTabs.resx">
       <DependentUpon>PanelFileTabs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelLoadExcel.resx">
+      <DependentUpon>PanelLoadExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelProject.resx">
       <DependentUpon>PanelProject.cs</DependentUpon>
