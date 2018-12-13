@@ -113,6 +113,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FastColoredTextBox\VisualMarker.cs" />
+    <Compile Include="Functionalities\GlobalVariables.cs" />
     <Compile Include="Functionalities\Matkul.cs" />
     <Compile Include="Panels\PanelDirectory.cs">
       <SubType>UserControl</SubType>

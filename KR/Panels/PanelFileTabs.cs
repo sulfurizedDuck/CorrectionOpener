@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using FastColoredTextBoxNS;
+using KR.Functionalities;
 
 namespace KR.Panels
 {
@@ -30,9 +31,8 @@ namespace KR.Panels
 
             if (tabFiles.TabPages.Count > 0)
             {
-                Template parent = (Template)Parent.Parent.Parent;
                 TabPage selectedTab = tabFiles.SelectedTab;
-                parent.setCurrentPath(selectedTab.Name);
+                GlobalVariables.formMain.setCurrentPath(selectedTab.Name);
             }
 
         }
@@ -99,27 +99,23 @@ namespace KR.Panels
             this.Dock = DockStyle.Fill;
         }
 
-        public void PanelFileTabs_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.W)
-            {
-                if (tabFiles.TabPages.Count != 0)
-                {
-                    tabFiles.TabPages.Remove(tabFiles.SelectedTab);
-                }
-            }
-        }
-
         private void tabFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Template parent = (Template)Parent.Parent.Parent;
             TabPage selectedTab = ((TabControl)sender).SelectedTab;
 
             if (selectedTab != null)
             {
-                parent.setCurrentPath(selectedTab.Name);
+                GlobalVariables.formMain.setCurrentPath(selectedTab.Name);
             }
 
+        }
+
+        public void closeTab()
+        {
+            if (tabFiles.TabPages.Count != 0)
+            {
+                tabFiles.TabPages.Remove(tabFiles.SelectedTab);
+            }
         }
     }
 }

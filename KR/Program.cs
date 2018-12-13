@@ -19,7 +19,7 @@ namespace KR
             Matkul.initMatkuls();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Template());
+            Application.Run(GlobalVariables.formMain);
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using KR.Functionalities;
 
 namespace KR.Panels
 {
@@ -29,7 +30,7 @@ namespace KR.Panels
 
         private void SearchFiles_Load(object sender, EventArgs e)
         {
-            txtSearch.Focus();
+            txtSearch.Select();
         }
 
         private void SearchFiles_Leave(object sender, EventArgs e)
@@ -50,14 +51,15 @@ namespace KR.Panels
                 if (path == null)
                     return;
 
-                int index = Template.panelMain.addTab(path);
-                Template.panelMain.switchTab(index);
+                int index = GlobalVariables.panelMain.addTab(path);
+                GlobalVariables.panelMain.switchTab(index);
             }
         }
 
-        public void loadSuggestions(String rootDir)
+        public void loadSuggestions()
         {
-            String[] files = Directory.GetFiles(rootDir, "*.*", SearchOption.AllDirectories);
+            string rootDir = GlobalVariables.currProject;
+            string[] files = Directory.GetFiles(rootDir, "*.*", SearchOption.AllDirectories);
             int fileCount = files.Count();
 
             filePath.Clear();

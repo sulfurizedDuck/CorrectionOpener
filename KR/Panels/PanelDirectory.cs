@@ -15,7 +15,6 @@ namespace KR
     public partial class PanelDirectory : UserControl
     {
         private static TreeNode _selectedNode;
-        public static String rootDirectory="";
         public static TreeNode selectedNode
         {
             get
@@ -41,15 +40,16 @@ namespace KR
             InitializeComponent();
         }
 
-        public void initTree(String rootDir)
+        public void initTree()
         {
+            string rootDir = GlobalVariables.rootDirectory;
             if ((File.GetAttributes(rootDir) & FileAttributes.Directory) != FileAttributes.Directory)
             {
                 MessageBox.Show("Please Drop Directory!");
                 return;
             }
 
-            List<String> children = getDirectories(rootDir);
+            List<String> children = getDirectories();
 
             if (children.Count == 0)
             {
@@ -66,14 +66,14 @@ namespace KR
 
             switchProject(tree.Nodes[0]);
 
-            ((SplitContainer)Parent.Parent).Panel1Collapsed = false;
+            GlobalVariables.formMain.toggleSplitContainerCollapse(false);
+            
         } 
 
-        public List<String> getDirectories(String rootDir)
+        public List<String> getDirectories()
         {
-            rootDirectory = rootDir;
             List<String> childDirs = Directory
-                .GetDirectories(rootDir)
+                .GetDirectories(GlobalVariables.rootDirectory)
                 .ToList();
 
             for (int i=0; i<childDirs.Count; i++)
@@ -122,37 +122,37 @@ namespace KR
                 return;
 
             selectedNode = target;
-            Template parent = (Template)Parent.Parent.Parent;
-            parent.setCurrentDirectory(target.Text);
+            GlobalVariables.formMain.setCurrentDirectory(target.Text);
+            GlobalVariables.currProject = target.Text;
 
-            String selectedProject = rootDirectory + @"\" + target.Text;
+            String selectedProject = GlobalVariables.currProject;
 
             #region Getting files that should be shown 
             List<String> files = Directory
                 .GetFiles(selectedProject, "*.*", SearchOption.AllDirectories)
-                .Where(c => Matkul.selectedMatkul.extensions.Any(x => c.EndsWith(x)))
+                .Where(c => GlobalVariables.selectedMatkul.extensions.Any(x => c.EndsWith(x)))
                 .ToList();
-            if (Matkul.selectedMatkul.checkedDirectories.Count > 0)
+            if (GlobalVariables.selectedMatkul.checkedDirectories.Count > 0)
             {
                 files = files
-                    .Where(c => Matkul.selectedMatkul.checkedDirectories.FirstOrDefault(a => c.Contains(a)) != null)
+                    .Where(c => GlobalVariables.selectedMatkul.checkedDirectories.FirstOrDefault(a => c.Contains(a)) != null)
                     .ToList();
             }
-            if (Matkul.selectedMatkul.ignoredDirectories.Count > 0)
+            if (GlobalVariables.selectedMatkul.ignoredDirectories.Count > 0)
             {
                 files = files
-                    .Where(c => Matkul.selectedMatkul.ignoredDirectories.FirstOrDefault(a => c.Contains(a)) == null)
+                    .Where(c => GlobalVariables.selectedMatkul.ignoredDirectories.FirstOrDefault(a => c.Contains(a)) == null)
                     .ToList();
             }
-            Template.panelMain.readFiles(files);
+            GlobalVariables.panelMain.readFiles(files);
             #endregion
 
             #region Set suggestion for Goto
-            Template.panelSearchFiles.loadSuggestions(selectedProject);
+            GlobalVariables.panelSearchFiles.loadSuggestions();
             #endregion
 
             #region getting all files in folders
-            Template.panelProject.loadProject(selectedProject);
+            GlobalVariables.panelProject.loadProject(selectedProject);
             #endregion
         }
     }

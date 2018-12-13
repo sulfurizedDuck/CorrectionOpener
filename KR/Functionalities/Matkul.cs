@@ -11,19 +11,7 @@ namespace KR.Functionalities
     class Matkul
     {
         #region Static Variables
-        public static List<Matkul> matkuls =  new List<Matkul>();
 
-        private static Matkul _selectedMatkul;
-        public static Matkul selectedMatkul {
-            get
-            {
-                return _selectedMatkul;
-            }
-            set
-            {
-                _selectedMatkul = value;
-            }
-        }
         #endregion
 
         #region Attributes
@@ -95,7 +83,7 @@ namespace KR.Functionalities
 
         public static void initMatkuls()
         {
-            matkuls.Clear();
+            GlobalVariables.matkuls.Clear();
 
             #region Get All The Matkul Files
             List<String> files = Directory.GetFiles(@"Matkul", "*.txt").ToList();
@@ -128,11 +116,11 @@ namespace KR.Functionalities
                     ignoredDirectories.Clear();
                 }
                 Matkul newMatkul = new Matkul(matkulName, extensions, checkedDirectories, ignoredDirectories);
-                matkuls.Add(newMatkul);
+                GlobalVariables.matkuls.Add(newMatkul);
             }
             #endregion
 
-            selectedMatkul = matkuls[0];
+            GlobalVariables.selectedMatkul = GlobalVariables.matkuls[0];
 
         }
 
@@ -146,7 +134,7 @@ namespace KR.Functionalities
             aIgnoredList.Add("AndroidManifest.xml");
             aExtensions.Add("java");
             aExtensions.Add("xml");
-            Matkul.matkuls.Add(new Matkul(aName, aExtensions, aCheckedList, aIgnoredList));
+            GlobalVariables.matkuls.Add(new Matkul(aName, aExtensions, aCheckedList, aIgnoredList));
             
         }
     }

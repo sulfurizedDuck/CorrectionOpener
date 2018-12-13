@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using KR.Functionalities;
 
 namespace KR.Panels
 {
@@ -89,8 +90,8 @@ namespace KR.Panels
             if (e.Node.Nodes.Count != 0)
                 return;
 
-            int index = Template.panelMain.addTab(e.Node.Name);
-            Template.panelMain.switchTab(index);
+            int index = GlobalVariables.panelMain.addTab(e.Node.Name);
+            GlobalVariables.panelMain.switchTab(index);
         }
     }
 }

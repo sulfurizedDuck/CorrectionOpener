@@ -18,42 +18,25 @@ namespace KR
     public partial class Template : Form
     {
         AddMatkul formInsertMatkul;
-        public static PanelDirectory panelDirectory;
-        public static PanelSelectedDirectories panelIgnored;
-        public static PanelFileTabs panelMain;
-        public static SearchFiles panelSearchFiles;
-        public static PanelProject panelProject;
 
         private ToolStripItem clickedItem = null;
-
-        private string rootDir;
+        
 
         public Template()
         {
             InitializeComponent();
-            initPanels();
             configureSplitContainer();
             updateListMatkuls();
-        }
-
-        private void initPanels()
-        {
-            panelDirectory = new PanelDirectory();
-            panelIgnored = new PanelSelectedDirectories();
-            panelMain = new PanelFileTabs();
-            panelSearchFiles = new SearchFiles();
-            panelProject = new PanelProject();
         }
 
         private void configureSplitContainer()
         {
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.SplitterDistance = 50;
+            
+            splitContainer1.Panel2.Controls.Add(GlobalVariables.panelMain);
 
-            panelMain = new PanelFileTabs();
-            splitContainer1.Panel2.Controls.Add(panelMain);
-
-            panelHolder.Controls.Add(panelSearchFiles);
+            panelHolder.Controls.Add(GlobalVariables.panelSearchFiles);
         }
 
         private void Template_DragEnter(object sender, DragEventArgs e)
@@ -67,8 +50,8 @@ namespace KR
         private void Template_DragDrop(object sender, DragEventArgs e)
         {
             String rootDir = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
-            this.rootDir = rootDir;
-            loadFolders(rootDir);
+            GlobalVariables.rootDirectory = rootDir;
+            loadFolders();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -88,32 +71,17 @@ namespace KR
 
         private void directoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (panelDirectory == null)
-            {
-                panelDirectory = new PanelDirectory();
-            }
-
-            splitContainer1.Panel1.Controls.Add(panelDirectory);
+            splitContainer1.Panel1.Controls.Add(GlobalVariables.panelDirectory);
         }
 
         private void projectMenuItem_Click(object sender, EventArgs e)
         {
-            if (panelProject == null)
-            {
-                panelProject = new PanelProject();
-            }
-
-            splitContainer1.Panel1.Controls.Add(panelProject);
+            splitContainer1.Panel1.Controls.Add(GlobalVariables.panelProject);
         }
 
         private void ignoredDirectoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (panelIgnored == null)
-            {
-                panelIgnored = new PanelSelectedDirectories();
-            }
-
-            splitContainer1.Panel1.Controls.Add(panelIgnored);
+            splitContainer1.Panel1.Controls.Add(GlobalVariables.panelSelectedDirectories);
         }
 
         private void addMatkulToolStripMenuItem_Click(object sender, EventArgs e)
@@ -125,12 +93,9 @@ namespace KR
             formInsertMatkul.Show();
         }
 
-        private void Template_KeyDown(object sender, KeyEventArgs e)
+        public void toggleSplitContainerCollapse(bool isCollapse)
         {
-            if (e.Control && e.KeyCode == Keys.W && panelMain != null)
-            {
-                panelMain.PanelFileTabs_KeyDown(sender, e);
-            }
+            splitContainer1.Panel1Collapsed = isCollapse;
         }
 
         public void setCurrentDirectory(String root)
@@ -147,7 +112,7 @@ namespace KR
         {
             Matkul.initMatkuls();
             matkulToolStripMenuItem.DropDownItems.Clear();
-            foreach(Matkul matkul in Matkul.matkuls)
+            foreach(Matkul matkul in GlobalVariables.matkuls)
             {
                 ToolStripMenuItem tsmi = new ToolStripMenuItem(matkul.matkulName);
                 tsmi.Click += Tsmi_Click;
@@ -173,8 +138,8 @@ namespace KR
 
             int index = matkulToolStripMenuItem.DropDownItems.IndexOf(clicker);
 
-            Matkul.selectedMatkul = Matkul.matkuls[index];
-            panelIgnored.initListView();
+            GlobalVariables.selectedMatkul = GlobalVariables.matkuls[index];
+            GlobalVariables.panelSelectedDirectories.initListView();
         }
 
         private void Template_Load(object sender, EventArgs e)
@@ -189,32 +154,30 @@ namespace KR
 
             if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                loadFolders(fbd.SelectedPath);
+                GlobalVariables.rootDirectory = fbd.SelectedPath;
+                loadFolders();
             }
         }
 
-        private void loadFolders(String rootDir)
+        private void loadFolders()
         {
-            if (panelDirectory == null)
-            {
-                panelDirectory = new PanelDirectory();
-            }
-            splitContainer1.Panel1.Controls.Add(panelDirectory);
-            panelDirectory.initTree(rootDir);
+            splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel1.Controls.Add(GlobalVariables.panelDirectory);
+            GlobalVariables.panelDirectory.initTree();
         }
 
         private void nextProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (panelDirectory == null)
+            if (GlobalVariables.panelDirectory == null)
                 return;
-            panelDirectory.switchProject(true);
+            GlobalVariables.panelDirectory.switchProject(true);
         }
 
         private void previousProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (panelDirectory == null)
+            if (GlobalVariables.panelDirectory == null)
                 return;
-            panelDirectory.switchProject(false);
+            GlobalVariables.panelDirectory.switchProject(false);
         }
 
         private void gotoAnythingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,5 +193,14 @@ namespace KR
             panelHolder.Visible = true;
         }
 
+        private void closeFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GlobalVariables.panelMain.closeTab();
+        }
+
+        private void closeWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
     }
 }

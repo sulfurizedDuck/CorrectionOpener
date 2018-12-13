@@ -78,7 +78,6 @@
             this.Name = "PanelFileTabs";
             this.Size = new System.Drawing.Size(484, 384);
             this.Load += new System.EventHandler(this.PanelFileTabs_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PanelFileTabs_KeyDown);
             this.tabFiles.ResumeLayout(false);
             this.ResumeLayout(false);
 
