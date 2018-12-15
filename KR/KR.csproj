@@ -133,12 +133,6 @@
     <Compile Include="Panels\PanelFileTabs.Designer.cs">
       <DependentUpon>PanelFileTabs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panels\PanelHolder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Panels\PanelHolder.Designer.cs">
-      <DependentUpon>PanelHolder.cs</DependentUpon>
-    </Compile>
     <Compile Include="Panels\PanelLoadExcel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,6 +164,16 @@
     <Compile Include="Settings\AddMatkul.Designer.cs">
       <DependentUpon>AddMatkul.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings\FormCustomizeExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\FormCustomizeExcel.Designer.cs">
+      <DependentUpon>FormCustomizeExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StackedHeader\Header.cs" />
+    <Compile Include="StackedHeader\IStackedHeaderGenerator.cs" />
+    <Compile Include="StackedHeader\StackedHeaderDecorator.cs" />
+    <Compile Include="StackedHeader\StackedHeaderGenerator.cs" />
     <Compile Include="Style\MenuStripColor.cs" />
     <Compile Include="Template.cs">
       <SubType>Form</SubType>
@@ -226,6 +230,9 @@
     <EmbeddedResource Include="Settings\AddMatkul.resx">
       <DependentUpon>AddMatkul.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings\FormCustomizeExcel.resx">
+      <DependentUpon>FormCustomizeExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Template.resx">
       <DependentUpon>Template.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,7 +249,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

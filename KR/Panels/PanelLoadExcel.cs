@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KR.Functionalities;
 using System.IO;
+using KR.Settings;
 
 namespace KR.Panels
 {
@@ -52,8 +53,11 @@ namespace KR.Panels
             GlobalVariables.formMain.splitContainerExcel.Panel2Collapsed = true;
 
             //TODO: Add some open excel logic here
-
-            GlobalVariables.formMain.splitContainerExcel.Panel2Collapsed = false;
+            FormCustomizeExcel custom = new FormCustomizeExcel();
+            custom.FormClosed += (o, ev) =>
+            {
+                GlobalVariables.formMain.splitContainerExcel.Panel2Collapsed = false;
+            };
         }
 
         private void PanelLoadExcel_DragEnter(object sender, DragEventArgs e)

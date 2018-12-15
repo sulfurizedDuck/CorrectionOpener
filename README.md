@@ -9,3 +9,4 @@ NOTES:
 Used 'libraries':
 1. https://github.com/PavelTorgashov/FastColoredTextBox
 2. https://www.codeproject.com/Tips/801004/WPF-AutoComplete-TextBox (Potential)
+3. https://www.codeproject.com/Articles/474418/DataGridViewplus-e-plusStackedplusHeader (Potential)
